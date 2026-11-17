@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tutancatmun · $TUTCAT</title>
+<meta name="description" content="A god-king of Egypt. Reborn as a house cat. Same crown, new whiskers. $TUTCAT on Solana.">
+<meta name="theme-color" content="#1f3a8a">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="logo/tutcat-logo-512.png">
+<meta property="og:url" content="https://dev7cee.github.io/tutcat/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tutancatmun · $TUTCAT">
+<meta property="og:description" content="A god-king of Egypt. Reborn as a house cat. Same crown, new whiskers.">
+<meta property="og:image" content="https://dev7cee.github.io/tutcat/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dev7cee.github.io/tutcat/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,700;1,9..144,800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{
+  --paper:#f3e6c8;--paper2:#ead8b0;--card:#fbf3df;--ink:#2a1d14;--dim:#6b5440;
+  --lapis:#1f3a8a;--lapis2:#16296a;--gold:#e6b53c;--gold2:#a8711a;--red:#b8432c;--teal:#2aa198;
+  --fd:"Fraunces",Georgia,"Times New Roman",serif;--fb:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' seed='4'/><feColorMatrix values='0 0 0 0 .55 0 0 0 0 .42 0 0 0 0 .25 0 0 0 .55 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>")}
+img,svg{max-width:100%}
+[hidden]{display:none!important}
+a{color:var(--lapis)}
+::selection{background:var(--gold);color:var(--ink)}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--ink);color:var(--paper);padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:12px}
+.pad{padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1160px;margin:0 auto;position:relative;z-index:1}
+h1,h2,h3{font-family:var(--fd);font-weight:900;line-height:.98;margin:0;letter-spacing:-.01em}
+h2 em,h1 em{font-style:italic;font-weight:800;color:var(--red)}
+.kicker{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:28px;height:2px;background:currentColor}
+.btn{display:inline-flex;align-items:center;gap:8px;border:2.5px solid var(--ink);background:var(--lapis);color:#fff;font-family:var(--fb);font-weight:700;font-size:15px;padding:12px 20px;border-radius:999px;text-decoration:none;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.gold{background:var(--gold);color:var(--ink)}
+.btn.ghost{background:var(--card);color:var(--ink)}
+.btn[aria-disabled=true]{opacity:.55;cursor:not-allowed}
+.btn svg{width:18px;height:18px}
+
+/* header */
+.top{position:sticky;top:0;z-index:30;background:rgba(243,230,200,.88);backdrop-filter:blur(8px);border-bottom:2.5px solid var(--ink)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand img{width:42px;height:42px;border-radius:50%;border:2.5px solid var(--ink);background:var(--gold)}
+.brand b{font-family:var(--fd);font-size:22px;font-weight:900}
+.brand span{font-size:12px;color:var(--dim);font-weight:700;letter-spacing:.08em}
+nav.links{display:flex;gap:2px}
+nav.links a{color:var(--ink);text-decoration:none;font-weight:700;font-size:14px;padding:6px 12px;border-radius:999px}
+nav.links a:hover{background:var(--paper2)}
+.top .btn{padding:9px 16px;font-size:14px;box-shadow:3px 3px 0 var(--ink)}
+
+/* cover */
+.cover{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center;padding-block:56px 70px}
+.ticker-tag{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--gold);font-weight:700;font-size:13px;letter-spacing:.14em;padding:6px 12px;border-radius:999px}
+.cover h1{font-size:clamp(50px,7.6vw,104px);margin-top:18px}
+.cover h1 .sub{display:block;font-size:.34em;font-style:italic;font-weight:700;color:var(--lapis);margin-top:10px;letter-spacing:0}
+.tagline{font-family:var(--fd);font-size:clamp(20px,2.2vw,26px);font-weight:600;line-height:1.3;margin:22px 0 0;max-width:30ch}
+.tagline em{color:var(--red)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.badge{border:2px solid var(--ink);background:var(--card);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
+.badge b{color:var(--red)}
+.ca{margin-top:22px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:2.5px dashed var(--ink);border-radius:16px;padding:10px 12px;background:rgba(251,243,223,.7);max-width:560px}
+.ca .lbl{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.ca code{flex:1;min-width:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;overflow-wrap:anywhere}
+.chip{border:2px solid var(--ink);background:var(--gold);color:var(--ink);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;cursor:pointer;font-family:var(--fb)}
+.chip:disabled{opacity:.5;cursor:not-allowed}
+
+.shrine{position:relative;aspect-ratio:5/6;max-width:500px;width:100%;margin:0 auto}
+.arch{position:absolute;inset:0;border:3px solid var(--ink);border-radius:250px 250px 22px 22px;overflow:hidden;background:linear-gradient(180deg,#f7c66b,#e98a4a 70%,#d9964f);box-shadow:10px 10px 0 var(--ink)}
+.rays{position:absolute;left:50%;top:38%;width:180%;aspect-ratio:1;transform:translate(-50%,-50%);background:repeating-conic-gradient(rgba(255,241,196,.55) 0 8deg,transparent 8deg 20deg);animation:spin 60s linear infinite;border-radius:50%}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.dune{position:absolute;left:-5%;right:-5%;bottom:0;height:24%;background:#e9b872;border-top:3px solid var(--ink);border-radius:50% 50% 0 0/40% 40% 0 0}
+.pyr{position:absolute;bottom:20%;width:0;height:0;border-left:70px solid transparent;border-right:70px solid transparent;border-bottom:80px solid #c98b4a}
+.pyr.p1{left:6%}.pyr.p2{right:4%;transform:scale(.7);transform-origin:bottom}
+.dust{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff3c4;opacity:.8;animation:float 9s linear infinite}
+@keyframes float{from{transform:translateY(40px);opacity:0}20%{opacity:.9}to{transform:translateY(-320px);opacity:0}}
+.pet{position:absolute;left:50%;bottom:6%;width:74%;transform:translateX(-50%);cursor:pointer;background:none;border:0;padding:0;transition:transform .2s}
+.pet:hover{transform:translateX(-50%) scale(1.02)}
+.pet.purr{animation:purr .35s ease}
+@keyframes purr{30%{transform:translateX(-50%) scale(1.04,.97)}60%{transform:translateX(-50%) scale(.98,1.03)}}
+.pet svg{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 0 rgba(42,29,20,.18))}
+.pet-count{position:absolute;left:50%;bottom:-22px;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;white-space:nowrap;z-index:2}
+.hint{position:absolute;right:-6px;top:16%;background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:8px 12px;font-family:var(--fd);font-style:italic;font-weight:700;font-size:15px;transform:rotate(4deg);box-shadow:3px 3px 0 var(--ink);z-index:2}
+.floaty{position:absolute;pointer-events:none;font-size:22px;color:var(--red);animation:up 1.2s ease-out forwards;z-index:3}
+@keyframes up{to{transform:translateY(-90px) scale(1.4);opacity:0}}
+
+/* frieze */
+.frieze{position:relative;z-index:1;border-block:2.5px solid var(--ink);background:var(--lapis);color:var(--gold);overflow:hidden}
+.frieze-track{display:flex;width:max-content;animation:tick 40s linear infinite;align-items:center;gap:18px;padding:10px 0}
+.frieze-track span{font-family:var(--fd);font-weight:800;font-size:18px;color:#fff;white-space:nowrap}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* sections */
+section.block{padding-block:84px}
+.head{display:grid;gap:14px;max-width:760px}
+.head h2{font-size:clamp(40px,6vw,78px)}
+.head p{margin:0;color:var(--dim);font-size:17px;max-width:58ch}
+.chronicle{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:36px;margin-top:40px;align-items:center}
+.portrait{border:3px solid var(--ink);border-radius:24px;background:var(--lapis);padding:22px 22px 0;box-shadow:8px 8px 0 var(--ink);position:relative;overflow:hidden}
+.portrait::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(230,181,60,.18) 0 10px,transparent 10px 20px)}
+.portrait svg{position:relative;display:block;width:78%;margin:0 auto}
+.portrait figcaption{position:relative;background:var(--gold);border-top:3px solid var(--ink);margin:0 -22px;padding:10px 16px;font-family:var(--fd);font-style:italic;font-weight:700;text-align:center}
+.cards{display:grid;gap:16px}
+.card{display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px;align-items:start;background:var(--card);border:2.5px solid var(--ink);border-radius:20px;padding:18px;box-shadow:5px 5px 0 var(--ink)}
+.card .ic{width:52px;height:52px;border-radius:14px;border:2.5px solid var(--ink);display:grid;place-items:center;color:var(--ink)}
+.card:nth-child(1) .ic{background:var(--gold)}.card:nth-child(2) .ic{background:var(--teal)}.card:nth-child(3) .ic{background:#f2a3a0}
+.card h3{font-size:24px}
+.card p{margin:6px 0 0;color:var(--dim)}
+.card .yr{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
+
+.panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:40px}
+.panel{margin:0;background:var(--card);border:3px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:6px 6px 0 var(--ink);transition:transform .25s}
+.panel:hover{transform:rotate(-.6deg) translateY(-4px)}
+.panel:nth-child(even):hover{transform:rotate(.6deg) translateY(-4px)}
+.panel svg{display:block;width:100%;height:auto;border-bottom:3px solid var(--ink)}
+.panel figcaption{padding:14px 18px 16px}
+.panel .num{font-family:var(--fd);font-style:italic;font-weight:800;color:var(--red)}
+.panel h3{font-size:24px;margin-top:2px}
+.panel p{margin:4px 0 0;color:var(--dim)}
+.ldot{animation:ldot 2.4s ease-in-out infinite}
+@keyframes ldot{25%{transform:translate(-30px,40px)}50%{transform:translate(20px,70px)}75%{transform:translate(-10px,10px)}}
+
+.seal{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:36px;margin-top:40px;align-items:center}
+.cartouche{justify-self:center;width:min(260px,70vw);border:4px solid var(--ink);border-radius:130px;background:linear-gradient(180deg,#ffe7a1,var(--gold));padding:34px 20px;display:grid;justify-items:center;gap:14px;position:relative;box-shadow:8px 8px 0 var(--ink)}
+.cartouche::after{content:"";position:absolute;left:18%;right:18%;bottom:-24px;height:14px;border:4px solid var(--ink);border-top:0;border-radius:0 0 8px 8px;background:var(--gold)}
+.cartouche svg{color:var(--ink)}
+.plate{margin-top:40px;text-align:center;font-family:var(--fd);font-weight:900;font-size:22px}
+.record{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:3px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:6px 6px 0 var(--ink)}
+.record th,.record td{text-align:left;padding:14px 18px;border-bottom:2px dashed rgba(42,29,20,.25);vertical-align:top}
+.record tr:last-child th,.record tr:last-child td{border-bottom:0}
+.record th{width:34%;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:700}
+.record td{font-weight:700;overflow-wrap:anywhere}
+.record td code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;font-weight:500}
+.note{margin-top:14px;font-size:13px;color:var(--dim)}
+
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:40px;counter-reset:s}
+.step{background:var(--card);border:2.5px solid var(--ink);border-radius:20px;padding:20px;box-shadow:5px 5px 0 var(--ink);display:grid;gap:8px;align-content:start}
+.step .n{width:44px;height:44px;border-radius:50%;border:2.5px solid var(--ink);background:var(--lapis);color:var(--gold);display:grid;place-items:center;font-family:var(--fd);font-weight:900;font-size:20px}
+.step h3{font-size:22px}
+.step p{margin:0;color:var(--dim);font-size:15px}
+.warn{margin-top:22px;font-weight:700;color:var(--red)}
+
+.closing{text-align:center;padding-block:90px;position:relative;z-index:1}
+.closing h2{font-size:clamp(46px,7vw,96px)}
+.closing p{color:var(--dim);font-size:18px;margin:16px auto 0;max-width:46ch}
+.closing .cta{justify-content:center}
+.closing .mini{width:120px;margin:0 auto 18px;animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+footer{position:relative;z-index:1;background:var(--ink);color:#e9dcc0;padding-block:48px 60px}
+footer a{color:var(--gold)}
+.foot{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,.6fr));gap:30px}
+.foot h4{margin:0 0 10px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#bca98a}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.foot ul a{text-decoration:none;color:#f3e6c8}
+.foot ul a:hover{color:var(--gold)}
+.disc{border:2px solid var(--gold);border-radius:16px;padding:18px;display:grid;gap:8px}
+.disc strong{font-family:var(--fd);font-size:20px;color:var(--gold)}
+.disc p{margin:0;font-size:14px;color:#cdbb9a}
+.legal{margin-top:26px;font-size:13px;color:#a8977c}
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:920px){
+  .cover,.chronicle,.seal,.foot{grid-template-columns:minmax(0,1fr)}
+  .cover{padding-top:34px}
+  .shrine{max-width:420px}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  nav.links{display:none}
+}
+@media (max-width:560px){
+  .panels,.steps{grid-template-columns:minmax(0,1fr)}
+  .hint{right:4px;font-size:13px}
+  .brand span{display:none}
+  .record th{width:40%;padding:12px}
+  .record td{padding:12px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#chronicle">Skip to the tale</a>
+<header class="top">
+  <div class="wrap pad">
+    <a class="brand" href="#cover"><img src="favicon.svg" alt=""><div><b>Tutancatmun</b><br><span>$TUTCAT</span></div></a>
+    <nav class="links" aria-label="Sections"><a href="#cover">Cover</a><a href="#chronicle">Chronicle</a><a href="#scrolls">Scrolls</a><a href="#cartouche">Cartouche</a><a href="#decree">Decree</a></nav>
+    <a class="btn gold js-buy" href="#decree">Buy $TUTCAT</a>
+  </div>
+</header>
+
+<main>
+<div class="pad">
+<div class="wrap">
+  <section class="cover" id="cover">
+    <div>
+      <span class="ticker-tag">$TUTCAT · SOLANA</span>
+      <h1>Tutancatmun<span class="sub">the boy-king, back with nine lives</span></h1>
+      <p class="tagline">A god-king of Egypt. Reborn as a house cat. <em>Same crown, new whiskers.</em></p>
+      <div class="cta">
+        <a class="btn js-buy" href="#decree"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h13M12 6l6 6-6 6"/></svg><span class="js-buy-label">Buy on pump.fun</span></a>
+        <a class="btn ghost js-chart" href="#cartouche">Chart</a>
+        <a class="btn ghost js-x" href="#community">X</a>
+      </div>
+      <div class="badges"><span class="badge"><b>Nine</b> lives</span><span class="badge"><b>One</b> crown</span><span class="badge"><b>0</b> presale</span><span class="badge"><b>0%</b> tax</span></div>
+      <div class="ca"><span class="lbl">CA</span><code class="js-ca">Coming soon · revealed at launch</code><button class="chip js-copy" type="button" disabled>Copy</button></div>
+    </div>
+    <div class="shrine">
+      <div class="arch" aria-hidden="true">
+        <div class="rays"></div>
+        <div class="pyr p1"></div><div class="pyr p2"></div>
+        <div class="dune"></div>
+        <div id="dust"></div>
+      </div>
+      <span class="hint">pet the pharaoh ↓</span>
+      <button class="pet" id="pet" type="button" aria-label="Pet Tutancatmun"></button>
+      <span class="pet-count" aria-live="polite">Tribute paid · <b id="petN">0</b> <span id="petW">pets</span></span>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="frieze" aria-hidden="true"><div class="frieze-track" id="frieze"></div></div>
+
+<div class="pad">
+<div class="wrap">
+  <section class="block" id="chronicle">
+    <div class="head">
+      <span class="kicker">The chronicle</span>
+      <h2>Same crown, <em>new whiskers</em>.</h2>
+      <p>He became king at nine years old. Three thousand years later he came back with nine lives. Coincidence? The cat says no.</p>
+    </div>
+    <div class="chronicle">
+      <figure class="portrait rv" style="margin:0"><div id="portrait"></div><figcaption>Official royal portrait. He sat still for exactly four seconds.</figcaption></figure>
+      <div class="cards">
+        <article class="card rv"><div class="ic" id="ic1"></div><div><span class="yr">Long, long ago</span><h3>The reign</h3><p>The youngest god-king of the Nile. Gold mask, blue stripes, a whole kingdom bowing at his sandals.</p></div></article>
+        <article class="card rv"><div class="ic" id="ic2"></div><div><span class="yr">3,300 years later</span><h3>The rebirth</h3><p>He woke up inside a cardboard box in a small apartment. Same crown. Four paws. Zero explanation.</p></div></article>
+        <article class="card rv"><div class="ic" id="ic3"></div><div><span class="yr">Today</span><h3>The house cat</h3><p>He now rules a sofa, demands tribute at 6 a.m. and knocks your things off the table. As is his divine right.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="scrolls" style="padding-top:20px">
+    <div class="head">
+      <span class="kicker">The scrolls</span>
+      <h2>A pharaoh's life, <em>re-painted</em>.</h2>
+      <p>Four scenes from the royal archive. Painted on papyrus. Mostly.</p>
+    </div>
+    <div class="panels">
+      <figure class="panel rv"><div data-scene="throne"></div><figcaption><span class="num">I.</span><h3>The throne</h3><p>Every empire starts with a cardboard box.</p></figcaption></figure>
+      <figure class="panel rv"><div data-scene="tribute"></div><figcaption><span class="num">II.</span><h3>The tribute</h3><p>Fish at dawn. Fish at noon. The people obey.</p></figcaption></figure>
+      <figure class="panel rv"><div data-scene="nap"></div><figcaption><span class="num">III.</span><h3>The sun nap</h3><p>The sun rises every morning. So does the nap.</p></figcaption></figure>
+      <figure class="panel rv"><div data-scene="dot"></div><figcaption><span class="num">IV.</span><h3>The red dot</h3><p>A god does not chase. A god… investigates.</p></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="block" id="cartouche" style="padding-top:20px">
+    <div class="head">
+      <span class="kicker">The cartouche</span>
+      <h2>The royal <em>record</em>.</h2>
+      <p>Carved in gold, verified on-chain. Everything you need to know, nothing you don't.</p>
+    </div>
+    <div class="seal">
+      <div class="rv"><div class="cartouche" id="cartoucheGlyphs" aria-hidden="true"></div><div class="plate">Tutancatmun</div></div>
+      <div class="rv">
+        <table class="record">
+          <tr><th scope="row">Name</th><td>Tutancatmun</td></tr>
+          <tr><th scope="row">Symbol</th><td>$TUTCAT</td></tr>
+          <tr><th scope="row">Chain</th><td>Solana</td></tr>
+          <tr><th scope="row">Launch</th><td>pump.fun · fair launch</td></tr>
+          <tr><th scope="row">Supply</th><td>1,000,000,000</td></tr>
+          <tr><th scope="row">Presale · Tax</th><td>None · 0%</td></tr>
+          <tr><th scope="row">Contract</th><td><code class="js-ca">Coming soon · revealed at launch</code></td></tr>
+        </table>
+        <p class="note">Only trust the contract shown on this page and on our official X. The pharaoh will never DM you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="decree" style="padding-top:20px">
+    <div class="head">
+      <span class="kicker">The decree</span>
+      <h2>Pay tribute to the <em>cat</em>.</h2>
+      <p>Four steps. No sacrifice required. Fish optional.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><span class="n">1</span><h3>Get a wallet</h3><p>Install Phantom or Solflare. Write your recovery phrase on paper and never share it.</p></div>
+      <div class="step rv"><span class="n">2</span><h3>Load SOL</h3><p>Buy SOL on an exchange and send it to your wallet. Keep a little for fees.</p></div>
+      <div class="step rv"><span class="n">3</span><h3>Copy the CA</h3><p>Copy the contract from this page. Read it back before you paste. Fake cats are everywhere.</p></div>
+      <div class="step rv"><span class="n">4</span><h3>Swap for $TUTCAT</h3><p>Open pump.fun from our button, swap SOL for $TUTCAT, and bow.</p></div>
+    </div>
+    <p class="warn">No one from the team will ever DM you to buy. Ignore any other link.</p>
+  </section>
+</div>
+</div>
+
+<section class="closing pad" id="community">
+  <div class="mini" id="miniCat" aria-hidden="true"></div>
+  <h2>The tomb is <em>open</em>.</h2>
+  <p>Kneel before the cat, then join the court. Memes, lore and royal decrees drop on X first.</p>
+  <div class="cta">
+    <a class="btn gold js-buy" href="#decree"><span class="js-buy-label">Buy on pump.fun</span></a>
+    <a class="btn ghost js-chart" href="#cartouche">Chart</a>
+    <a class="btn ghost js-x" href="#community">X</a>
+  </div>
+</section>
+</main>
+
+<footer class="pad">
+  <div class="wrap">
+    <div class="foot">
+      <div class="disc" role="note">
+        <strong>Virtual currencies, real risks.</strong>
+        <p>$TUTCAT is a memecoin with no utility, no roadmap and no intrinsic value. Its price can drop suddenly and you can lose everything you put in. It is not covered by any deposit guarantee or investor protection. Nothing on this site is financial advice. Only buy what you can afford to lose.</p>
+        <p>Tutancatmun is an original cartoon character. Not affiliated with any museum, government, historical estate or exhibition.</p>
+      </div>
+      <div><h4>The tale</h4><ul><li><a href="#cover">Cover</a></li><li><a href="#chronicle">Chronicle</a></li><li><a href="#scrolls">Scrolls</a></li><li><a href="#cartouche">Cartouche</a></li><li><a href="#decree">Decree</a></li></ul></div>
+      <div><h4>The court</h4><ul><li><a class="js-x" href="#community">X</a></li><li><a class="js-chart" href="#cartouche">DexScreener</a></li><li><a class="js-buy" href="#decree">pump.fun</a></li></ul></div>
+    </div>
+    <p class="legal">© 2026 $TUTCAT · CA: <span class="js-ca">coming soon</span> · Legal notice and publisher details: to be completed.</p>
+  </div>
+</footer>
+
+<script>
+/* ============ CONFIG: edit this ============
+   contract: paste the pump.fun mint address (CA) on launch day.
+             It appears everywhere on the page and turns on the pump.fun / DexScreener buttons.
+   socials:  your links. Empty = the button scrolls to the community section.
+   Nothing on this site reads the price or the market cap. */
+const CONFIG = {
+  contract: "",
+  socials: { X: "https://x.com/guardiannews/status/1061503578454585345", Telegram: "" }
+};
+/* ============================================ */
+/* ============ ART (original SVG, drawn in code) ============ */
+const INK = "#2a1d14";
+const STRIPES = '<pattern id="nm" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#1f3a8a"/><rect y="6" width="12" height="6" fill="#e6b53c"/></pattern>';
+const CAT_DEFS = `<defs>${STRIPES}
+<radialGradient id="fur" cx=".45" cy=".35" r=".8"><stop offset="0" stop-color="#f6cf8d"/><stop offset="1" stop-color="#d9964f"/></radialGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe7a1"/><stop offset=".5" stop-color="#e6b53c"/><stop offset="1" stop-color="#a8711a"/></linearGradient>
+<radialGradient id="iris" cx=".5" cy=".45" r=".6"><stop offset="0" stop-color="#d7f27a"/><stop offset="1" stop-color="#5a9a2a"/></radialGradient></defs>`;
+
+/* the pharaoh cat, drawn in a 300 x 360 box. eyes: "open" | "closed" | "wide" */
+function catG(o = {}){
+  const eyes = o.eyes || "open", tail = o.tail || 0, look = o.look || 0;
+  const eye = (x, flip) => {
+    if (eyes === "closed") return `<path d="M${x-15},128 Q${x},${138} ${x+15},128" fill="none" stroke="${INK}" stroke-width="4" stroke-linecap="round"/><path d="M${x+(flip?-15:15)},128 l${flip?-12:12},-6" stroke="${INK}" stroke-width="4" stroke-linecap="round"/>`;
+    const r = eyes === "wide" ? 17 : 15, py = eyes === "wide" ? 14 : 11;
+    return `<ellipse cx="${x}" cy="126" rx="${r}" ry="${r-2}" fill="url(#iris)" stroke="${INK}" stroke-width="3.5"/>
+      <ellipse cx="${x+look}" cy="126" rx="${eyes === "wide" ? 7 : 3.5}" ry="${py}" fill="${INK}"/>
+      <circle cx="${x+look-4}" cy="120" r="3" fill="#fff"/>
+      <path d="M${x+(flip?-r:r)},124 L${x+(flip?-r-16:r+16)},116" stroke="${INK}" stroke-width="4.5" stroke-linecap="round"/>`;
+  };
+  return `<g>
+  <path d="M212,300 C268,300 276,240 252,222 C240,214 230,226 240,236 C254,250 246,282 210,284" fill="url(#fur)" stroke="${INK}" stroke-width="4" stroke-linecap="round" transform="rotate(${tail} 214 292)"/>
+  <path d="M150,150 C96,158 82,236 90,298 C94,334 120,346 150,346 C180,346 206,334 210,298 C218,236 204,158 150,150Z" fill="url(#fur)" stroke="${INK}" stroke-width="4"/>
+  <path d="M104,250 q10,6 18,0 M178,250 q10,6 18,0 M102,276 q10,6 18,0 M180,276 q10,6 18,0" fill="none" stroke="#c07c3e" stroke-width="4" stroke-linecap="round"/>
+  <rect x="116" y="262" width="30" height="82" rx="15" fill="url(#fur)" stroke="${INK}" stroke-width="4"/>
+  <rect x="154" y="262" width="30" height="82" rx="15" fill="url(#fur)" stroke="${INK}" stroke-width="4"/>
+  <path d="M124,336 v8 M131,336 v8 M138,336 v8 M162,336 v8 M169,336 v8 M176,336 v8" stroke="${INK}" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M86,196 Q150,248 214,196 L208,214 Q150,262 92,214Z" fill="#1f3a8a" stroke="${INK}" stroke-width="3"/>
+  <path d="M84,182 Q150,236 216,182 L214,198 Q150,250 86,198Z" fill="#2aa198" stroke="${INK}" stroke-width="3"/>
+  <path d="M86,170 Q150,224 214,170 L216,184 Q150,238 84,184Z" fill="url(#gold)" stroke="${INK}" stroke-width="3"/>
+  <circle cx="150" cy="238" r="9" fill="#b8432c" stroke="${INK}" stroke-width="3"/>
+  <path d="M74,92 C70,140 64,196 58,230 L104,226 C100,190 98,160 100,140 L200,140 C202,160 200,190 196,226 L242,230 C236,196 230,140 226,92 C214,58 186,42 150,42 C114,42 86,58 74,92Z" fill="url(#nm)" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M86,90 L72,30 L118,58Z" fill="url(#fur)" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><path d="M88,76 L82,46 L106,62Z" fill="#f2a3a0"/>
+  <path d="M214,90 L228,30 L182,58Z" fill="url(#fur)" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><path d="M212,76 L218,46 L194,62Z" fill="#f2a3a0"/>
+  <path d="M150,72 C106,72 86,100 86,130 C86,164 114,184 150,184 C186,184 214,164 214,130 C214,100 194,72 150,72Z" fill="url(#fur)" stroke="${INK}" stroke-width="4"/>
+  <path d="M84,96 Q150,62 216,96 L216,108 Q150,80 84,108Z" fill="url(#gold)" stroke="${INK}" stroke-width="3"/>
+  <path d="M142,60 q8,-14 16,0 q10,4 2,12 l-10,8 l-10,-8 q-8,-8 2,-12Z" fill="url(#gold)" stroke="${INK}" stroke-width="3"/>
+  <path d="M150,62 l-6,-8 m6,8 l6,-8" stroke="${INK}" stroke-width="2"/>
+  <path d="M138,96 q12,-8 24,0 M144,104 q6,-4 12,0" fill="none" stroke="#c07c3e" stroke-width="3.5" stroke-linecap="round"/>
+  ${eye(120,true)}${eye(180,false)}
+  <path d="M143,148 h14 l-7,9z" fill="#e57a7a" stroke="${INK}" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M150,157 v6 M150,163 q-8,8 -16,2 M150,163 q8,8 16,2" fill="none" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>
+  <path d="M118,152 L80,146 M118,160 L82,164 M182,152 L220,146 M182,160 L218,164" stroke="${INK}" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+  <path d="M140,176 h20 l-2,34 q-8,8 -16,0z" fill="url(#nm)" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
+</g>`;
+}
+function catSVG(o){ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 360">${CAT_DEFS}${catG(o)}</svg>`; }
+
+/* small glyphs for borders and the cartouche */
+const GLYPHS = {
+  ankh: `<path d="M12,2 c-6,0 -7,8 0,12 c7,-4 6,-12 0,-12z M12,14 v12 M4,16 h16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>`,
+  eye: `<path d="M2,12 q10,-10 20,0 q-10,8 -20,0z" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="11" r="3" fill="currentColor"/><path d="M10,17 q-2,6 -6,7 M14,17 l3,8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`,
+  fish: `<path d="M3,13 q8,-10 16,0 q-8,10 -16,0z M19,13 l4,-5 v10z" fill="currentColor"/>`,
+  paw: `<circle cx="12" cy="16" r="5" fill="currentColor"/><circle cx="5" cy="9" r="2.4" fill="currentColor"/><circle cx="10" cy="5" r="2.4" fill="currentColor"/><circle cx="15" cy="5" r="2.4" fill="currentColor"/><circle cx="20" cy="9" r="2.4" fill="currentColor"/>`,
+  sun: `<circle cx="12" cy="12" r="6" fill="currentColor"/><path d="M12,1 v4 M12,19 v4 M1,12 h4 M19,12 h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`,
+  feather: `<path d="M12,2 q8,8 0,22 q-8,-14 0,-22z M12,8 v16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>`,
+  box: `<path d="M3,9 l9,-5 l9,5 v10 l-9,5 l-9,-5z M3,9 l9,5 l9,-5 M12,14 v10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>`,
+  dot: `<circle cx="12" cy="12" r="5" fill="#b8432c"/><circle cx="12" cy="12" r="9" fill="none" stroke="#b8432c" stroke-width="1.5" opacity=".5"/>`
+};
+const glyph = (k, s = 24) => `<svg viewBox="0 0 24 26" width="${s}" height="${s}" aria-hidden="true">${GLYPHS[k]}</svg>`;
+
+/* scenes for the gallery: each is a 400 x 300 painting */
+function scene(kind){
+  const sky = {
+    throne: ["#f7c66b","#e98a4a"], tribute: ["#f3e2bd","#e7cf9b"], nap: ["#fbe7b0","#f3c97a"], dot: ["#3b2a52","#1e1630"]
+  }[kind];
+  const bg = `<defs>${STRIPES}<linearGradient id="sk-${kind}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sky[0]}"/><stop offset="1" stop-color="${sky[1]}"/></linearGradient></defs><rect width="400" height="300" fill="url(#sk-${kind})"/>`;
+  const cat = (x, y, s, o) => `<g transform="translate(${x},${y}) scale(${s})">${catG(o)}</g>`;
+  if (kind === "throne") return bg + `
+    <circle cx="300" cy="96" r="38" fill="#fff1c4" opacity=".9"/>
+    <path d="M0,222 L70,150 L140,222Z" fill="#d9964f"/><path d="M70,150 L140,222 L100,222Z" fill="#b8742f"/>
+    <path d="M250,222 L310,166 L370,222Z" fill="#d9964f" opacity=".8"/>
+    <rect y="222" width="400" height="78" fill="#e9b872"/>
+    <path d="M120,300 L136,214 L264,214 L280,300Z" fill="#b98a55" stroke="${INK}" stroke-width="3"/>
+    <path d="M136,214 L118,196 L282,196 L264,214Z" fill="#cfa26c" stroke="${INK}" stroke-width="3"/>
+    <text x="200" y="262" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-weight="700" font-size="13" fill="${INK}" opacity=".7">FRAGILE · THIS SIDE UP</text>
+    ${cat(140, 20, .55)}`;
+  if (kind === "tribute") return bg + `
+    <g opacity=".22" fill="${INK}">${[0,1,2,3,4,5,6].map(i=>`<g transform="translate(${16+i*56},20)">${GLYPHS[["ankh","eye","fish","sun","feather","paw","box"][i]]}</g>`).join("")}</g>
+    <rect y="236" width="400" height="64" fill="#cfa26c"/>
+    ${cat(30, 50, .58)}
+    <ellipse cx="270" cy="258" rx="70" ry="16" fill="#1f3a8a" stroke="${INK}" stroke-width="3"/>
+    <path d="M200,252 q70,-26 140,0 l-6,14 q-64,20 -128,0z" fill="#2aa198" stroke="${INK}" stroke-width="3"/>
+    <path d="M236,238 q16,-16 32,0 q-16,14 -32,0z M268,238 l8,-7 v14z" fill="#e6b53c" stroke="${INK}" stroke-width="2.5"/>
+    <path d="M276,232 q16,-16 32,0 q-16,14 -32,0z M308,232 l8,-7 v14z" fill="#ffe7a1" stroke="${INK}" stroke-width="2.5"/>`;
+  if (kind === "nap") return bg + `
+    <path d="M300,0 L400,0 L220,300 L60,300Z" fill="#fff6d6" opacity=".55"/>
+    <circle cx="350" cy="44" r="26" fill="#ffd25e" stroke="${INK}" stroke-width="3"/>
+    ${[0,1,2,3,4,5,6,7].map(i=>{const a=i*Math.PI/4;return `<path d="M${350+Math.cos(a)*34},${44+Math.sin(a)*34} L${350+Math.cos(a)*46},${44+Math.sin(a)*46}" stroke="#e6b53c" stroke-width="4" stroke-linecap="round"/>`;}).join("")}
+    <rect y="240" width="400" height="60" fill="#b8432c"/><path d="M0,248 H400" stroke="#e6b53c" stroke-width="4" stroke-dasharray="14 10"/>
+    ${cat(110, 44, .56, {eyes:"closed", tail:-10})}
+    <text x="300" y="150" font-family="Fraunces,Georgia,serif" font-style="italic" font-weight="700" font-size="30" fill="${INK}">z</text>
+    <text x="320" y="122" font-family="Fraunces,Georgia,serif" font-style="italic" font-weight="700" font-size="22" fill="${INK}" opacity=".7">z</text>
+    <text x="334" y="100" font-family="Fraunces,Georgia,serif" font-style="italic" font-weight="700" font-size="16" fill="${INK}" opacity=".5">z</text>`;
+  return bg + `
+    <g opacity=".5">${[0,1,2,3,4,5,6,7,8,9].map(i=>`<circle cx="${(i*83)%400}" cy="${(i*47)%180}" r="1.6" fill="#fff"/>`).join("")}</g>
+    <rect y="240" width="400" height="60" fill="#2b1f3d"/>
+    <g class="ldot"><circle cx="318" cy="84" r="20" fill="#ff3b30" opacity=".25"/><circle cx="318" cy="84" r="9" fill="#ff3b30"/></g>
+    ${cat(70, 46, .56, {eyes:"wide", look:5})}
+    <text x="210" y="60" font-family="Fraunces,Georgia,serif" font-weight="700" font-size="22" fill="#ffd25e">!</text>`;
+}
+
+(function(){
+  const $ = id => document.getElementById(id), all = s => document.querySelectorAll(s);
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const CA = (CONFIG.contract || "").trim();
+
+  /* art */
+  $("pet").innerHTML = catSVG({});
+  $("portrait").innerHTML = catSVG({eyes:"closed"});
+  $("miniCat").innerHTML = catSVG({});
+  all("[data-scene]").forEach(el => el.innerHTML = `<svg viewBox="0 0 400 300" role="img" aria-label="${el.closest("figure").querySelector("h3").textContent}">${scene(el.dataset.scene)}</svg>`);
+  $("ic1").innerHTML = glyph("ankh", 28); $("ic2").innerHTML = glyph("box", 28); $("ic3").innerHTML = glyph("paw", 28);
+  $("cartoucheGlyphs").innerHTML = ["sun","eye","fish","paw","ankh"].map(k => glyph(k, 36)).join("");
+  const words = ["$TUTCAT","Same crown, new whiskers","Nine lives","Tribute at 6 a.m.","Fair launch","No presale","Bow to the cat"];
+  const ic = ["ankh","eye","fish","sun","paw","feather","box"];
+  const one = words.map((w,i) => `<span>${w}</span>${glyph(ic[i % ic.length], 22)}`).join("");
+  $("frieze").innerHTML = one + one + one + one;
+
+  /* dust */
+  if (!reduce) for (let k = 0; k < 18; k++){ const d = document.createElement("i"); d.className = "dust"; d.style.left = (Math.random()*100) + "%"; d.style.bottom = (10 + Math.random()*20) + "%"; d.style.animationDelay = (-Math.random()*9) + "s"; d.style.animationDuration = (7 + Math.random()*6) + "s"; $("dust").appendChild(d); }
+
+  /* links: contract + socials */
+  const pump = CA ? "https://pump.fun/coin/" + CA : "", dex = CA ? "https://dexscreener.com/solana/" + CA : "";
+  const ext = (a, url) => { a.href = url; a.target = "_blank"; a.rel = "noopener"; };
+  all(".js-ca").forEach(e => { if (CA) e.textContent = CA; });
+  if (CA){ all(".js-buy").forEach(a => ext(a, pump)); all(".js-chart").forEach(a => ext(a, dex)); }
+  else { all(".js-buy-label").forEach(s => s.textContent = "Buy · CA at launch"); }
+  if (CONFIG.socials.X) all(".js-x").forEach(a => ext(a, CONFIG.socials.X));
+  if (CONFIG.socials.Telegram) all(".js-tg").forEach(a => ext(a, CONFIG.socials.Telegram));
+  all(".js-copy").forEach(b => {
+    if (!CA) return; b.disabled = false;
+    b.onclick = () => navigator.clipboard.writeText(CA).then(() => { b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500); }).catch(() => {});
+  });
+
+  /* pet the pharaoh */
+  let pets = 0; try { pets = +localStorage.getItem("tutcat_pets") || 0; } catch(e){}
+  $("petN").textContent = pets; $("petW").textContent = pets === 1 ? "pet" : "pets";
+  let ac = null;
+  function purr(){
+    try {
+      if (!ac){ const A = window.AudioContext || window.webkitAudioContext; if (!A) return; ac = new A(); }
+      if (ac.state === "suspended") ac.resume();
+      const t = ac.currentTime, n = Math.floor(ac.sampleRate * .7), buf = ac.createBuffer(1, n, ac.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < n; i++){ const env = Math.sin(Math.PI * i / n); const am = .5 + .5 * Math.sin(2 * Math.PI * 26 * i / ac.sampleRate); d[i] = (Math.random()*2-1) * env * am; }
+      const s = ac.createBufferSource(), f = ac.createBiquadFilter(), g = ac.createGain(); s.buffer = buf; f.type = "lowpass"; f.frequency.value = 260; g.gain.value = .9;
+      s.connect(f); f.connect(g); g.connect(ac.destination); s.start(t);
+    } catch(e){}
+  }
+  const marks = ["♥","☥","♥","✦"];
+  $("pet").addEventListener("click", e => {
+    pets++; $("petN").textContent = pets; $("petW").textContent = pets === 1 ? "pet" : "pets"; try { localStorage.setItem("tutcat_pets", String(pets)); } catch(err){}
+    const p = $("pet"); p.classList.remove("purr"); void p.offsetWidth; p.classList.add("purr"); purr();
+    const box = p.parentElement.getBoundingClientRect(), f = document.createElement("span"); f.className = "floaty"; f.textContent = marks[pets % marks.length];
+    f.style.left = ((e.clientX || box.left + box.width/2) - box.left - 10) + "px"; f.style.top = ((e.clientY || box.top + box.height/2) - box.top - 20) + "px";
+    p.parentElement.appendChild(f); setTimeout(() => f.remove(), 1300);
+    if (pets === 9 || pets % 99 === 0){ document.querySelector(".hint").textContent = pets === 9 ? "nine pets. the pharaoh approves." : "the pharaoh is pleased."; }
+  });
+
+  /* reveal */
+  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting){ x.target.classList.add("in"); io.unobserve(x.target); } }), {threshold:.15});
+  all(".rv").forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
